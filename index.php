@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container-xl mt-5">
         <h2>User Data Table</h2>
         <div class="mb-3 d-flex align-items-center justify-content-between">
             <div class="dropdown">
@@ -40,7 +40,137 @@
                     <label class="dropdown-item toggle-column" data-column="profile_image"><input type="checkbox" class="mr-2" checked>Profile Image</label>
                 </div>
             </div>
-            <button id="add-column-btn" class="btn btn-primary">Add Custom Column</button>
+            <div>
+                <button id="add-column-btn" class="btn btn-primary">Add Custom Column</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add User
+                </button>
+            </div>
+
+            <!-- user add modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <form class="modal-content" id="add-user-form" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-3">
+                            <div class="row">
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="nickname">Nickname</label>
+                                    <input type="text" class="form-control" id="nickname" name="nickname" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="mobile">Mobile</label>
+                                    <input type="text" class="form-control" id="mobile" name="mobile" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="role">Role</label>
+                                    <input type="text" class="form-control" id="role" name="role" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="profile_image">Profile Image</label>
+                                    <input type="file" class="form-control" id="profile_image" name="profile_image" required>
+                                </div>
+                                <!-- Add custom column fields dynamically here -->
+                                <div class="col-12">
+                                    <div id="custom-column-fields" class="row"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- user edit modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <form class="modal-content" id="edit-user-form" enctype="multipart/form-data">
+                        <input type="hidden" id="edit-user-id" name="edit-user-id" />
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-3">
+                            <div class="row">
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-name">Name</label>
+                                    <input type="text" class="form-control" id="edit-name" name="name" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-nickname">Nickname</label>
+                                    <input type="text" class="form-control" id="edit-nickname" name="nickname" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-mobile">Mobile</label>
+                                    <input type="text" class="form-control" id="edit-mobile" name="mobile" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-email">Email</label>
+                                    <input type="email" class="form-control" id="edit-email" name="email" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-role">Role</label>
+                                    <input type="text" class="form-control" id="edit-role" name="role" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-address">Address</label>
+                                    <input type="text" class="form-control" id="edit-address" name="address" required>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-gender">Gender</label>
+                                    <select class="form-control" id="edit-gender" name="gender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12 col-sm-6">
+                                    <label for="edit-profile_image">Profile Image</label>
+                                    <input type="file" class="form-control" id="edit-profile_image" name="profile_image">
+                                </div>
+                                <!-- Add custom column fields dynamically here -->
+                                <div class="col-12">
+                                    <div id="edit-custom-column-fields" class="row"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="table">
@@ -54,6 +184,7 @@
                         <th class="column-address">Address</th>
                         <th class="column-gender">Gender</th>
                         <th class="column-profile_image">Profile Image</th>
+                        <th class="column-action">Action</th>
                     </tr>
                 </thead>
                 <tbody id="user-table-body">
@@ -74,18 +205,26 @@
             $.getJSON(`customColumnsList.php?user_id=${userId}`, function(customColumns) {
                 customColumns.forEach(col => {
                     const isVisible = col.is_visible == 1;
-                    const columnClass = col.column_class.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens for class names
+                    const columnClass = col.column_class.replace(/\s+/g, '-').toLowerCase();
                     if ($(`.column-${columnClass}`).length === 0) {
                         $('thead tr').append(`<th class="column-${columnClass}" style="display: ${isVisible ? 'table-cell' : 'none'};">${col.column_name}</th>`);
                         $('#user-table-body tr').each(function() {
                             $(this).append(`<td class="column-${columnClass}" style="display: ${isVisible ? 'table-cell' : 'none'};"></td>`);
                         });
                     }
-                    $('#dropdownMenuButton1').append(`
-                        <label class="dropdown-item toggle-column" data-column="${columnClass}">
-                            <input type="checkbox" class="mr-2" ${isVisible ? 'checked' : ''}>${col.column_name}
-                        </label>
-                    `);
+                    $('#dropdownMenuButton1').append(
+                        `<label class="dropdown-item toggle-column" data-column="${columnClass}">
+                        <input type="checkbox" class="mr-2" ${isVisible ? 'checked' : ''}>${col.column_name}
+                    </label>`
+                    );
+
+                    // Add custom column fields to the form
+                    $('#custom-column-fields').append(
+                        `<div class="form-group col-12 col-sm-6">
+                        <label for="${columnClass}">${col.column_name}</label>
+                        <input type="text" class="form-control" id="${columnClass}" name="${columnClass}">
+                    </div>`
+                    );
                 });
 
                 // Ensure initial state matches stored preferences
@@ -98,7 +237,6 @@
                     $(`.column-${column}`).toggle(isChecked);
                 });
 
-                // Make custom columns editable after loading data
                 makeColumnsEditable();
             });
 
@@ -111,37 +249,61 @@
                 updateColumnVisibility(column, isChecked);
             });
 
-            // Fetch user data and populate table
-            $.getJSON('fetch_user_data.php', function(data) {
-                let rows = '';
-                let headers = [];
-                $('#table thead th').each(function() {
-                    const columnName = $(this).attr('class').replace('column-', ''); // Extract class name without 'column-' prefix
-                    headers.push(columnName);
-                });
-
-                data.forEach(user => {
-                    rows += '<tr>';
-                    headers.forEach(columnName => {
-                        if (user[columnName] !== undefined) {
-                            if (columnName === 'profile_image') {
-                                rows += `<td class="column-${columnName}"><img src="${user[columnName]}" alt="Profile Image" width="50"></td>`;
-                            } else {
-                                if ($(`.column-${columnName}`).hasClass('custom-column')) {
-                                    rows += `<td class="column-${columnName} custom-column" contenteditable="true">${user[columnName]}</td>`;
-                                } else {
-                                    rows += `<td class="column-${columnName}">${user[columnName]}</td>`;
-                                }
-                            }
-                        } else {
-                            rows += `<td class="column-${columnName}">-</td>`;
-                        }
+            // Fetch user data and populate table 
+            function fetchUserData() {
+                $.getJSON('fetch_user_data.php', function(data) {
+                    let rows = '';
+                    let headers = [];
+                    $('#table thead th').each(function() {
+                        const columnName = $(this).attr('class').replace('column-', '');
+                        headers.push(columnName);
                     });
-                    rows += '</tr>';
-                });
 
-                $('#user-table-body').html(rows);
-                loadColumnState();
+                    data.forEach(user => {
+                        rows += '<tr>';
+                        headers.forEach(columnName => {
+                            if (user[columnName] !== undefined) {
+                                if (columnName === 'profile_image') {
+                                    rows += `<td class="column-${columnName}"><img src="${user[columnName]}" alt="Profile Image" width="50"></td>`;
+                                } else {
+                                    if ($(`.column-${columnName}`).hasClass('custom-column')) {
+                                        rows += `<td class="column-${columnName} custom-column" contenteditable="true">${user[columnName]}</td>`;
+                                    } else {
+                                        rows += `<td class="column-${columnName}">${user[columnName]}</td>`;
+                                    }
+                                }
+                            } else {
+                                rows += `<td class="column-${columnName}">-</td>`;
+                            }
+                        });
+                        rows += `<td class="column-action"><button class="btn btn-primary btn-edit" data-id="${user.id}">Edit</button></td>`; // Ensure this line is present and correctly placed
+                        rows += '</tr>';
+                    });
+
+                    $('#user-table-body').html(rows);
+                    loadColumnState();
+                });
+            }
+
+            fetchUserData();
+
+            // Handle edit button click
+            $(document).on('click', '.btn-edit', function() {
+                const id = $(this).data('id');
+                console.log('id', id)
+                $.getJSON(`fetchUserData.php?id=${id}`, function(user) {
+                    $('#edit-user-id').val(id);
+                    $('#edit-name').val(user.name);
+                    $('#edit-nickname').val(user.nickname);
+                    $('#edit-mobile').val(user.mobile);
+                    $('#edit-email').val(user.email);
+                    $('#edit-role').val(user.role);
+                    $('#edit-address').val(user.address);
+                    $('#edit-gender').val(user.gender);
+                    // Populate custom fields if any
+                    // Open the modal
+                    $('#editModal').modal('show');
+                });
             });
 
             // Add custom column
@@ -152,11 +314,11 @@
                     if ($(`.column-${columnClass}`).length === 0) {
                         $('thead tr').append(`<th class="column-${columnClass}">${columnName}</th>`);
                         $('#user-table-body tr').append(`<td class="column-${columnClass} custom-column" style="display: table-cell;" contenteditable="true"></td>`);
-                        $('#dropdownMenuButton1').append(`
-                            <label class="dropdown-item toggle-column" data-column="${columnClass}">
-                                <input type="checkbox" class="mr-2" checked>${columnName}
-                            </label>
-                        `);
+                        $('#dropdownMenuButton1').append(
+                            `<label class="dropdown-item toggle-column" data-column="${columnClass}">
+                            <input type="checkbox" class="mr-2" checked>${columnName}
+                        </label>`
+                        );
                         saveCustomColumns(columnClass, columnName);
                     } else {
                         alert('A column with this name already exists.');
@@ -215,7 +377,7 @@
             // Update column value in the database
             function updateColumnValue(columnClass, newValue) {
                 const userId = new URLSearchParams(window.location.search).get('user_id');
-                $.post('update_custom_column_value.php', {
+                $.post('customColumnEdit.php', {
                     user_id: userId,
                     column_class: columnClass,
                     new_value: newValue
@@ -239,8 +401,68 @@
                     console.error("Error updating column visibility:", error);
                 });
             }
+
+            // Handle form submission for adding a new user
+            $('#add-user-form').submit(function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const userId = new URLSearchParams(window.location.search).get('user_id');
+
+                $.ajax({
+                    url: 'add_user.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response);
+                        // Display success message
+                        alert('User added successfully!');
+                        fetchUserData();
+                        // Close the modal
+                        $('#exampleModal').modal('toggle');
+
+                        // Clear the form
+                        $('#add-user-form')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error adding user:", xhr.responseText);
+                    }
+                });
+            });
+
+
+            // Handle form submission for editing a user
+            $('#edit-user-form').submit(function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const id = $('#edit-user-id').val();
+                formData.append('user_id', userId);
+                formData.append('id', id);
+                $.ajax({
+                    url: 'editUserData.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response);
+                        // Display success message
+                        alert('User updated successfully!');
+                        fetchUserData();
+                        // Close the modal
+                        $('#editModal').modal('toggle');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error updating user:", xhr.responseText);
+                    }
+                });
+            });
+
+
         });
     </script>
+
 </body>
 
 </html>

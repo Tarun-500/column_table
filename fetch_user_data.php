@@ -1,34 +1,21 @@
 <?php
-header('Content-Type: application/json');
-
-include 'config.php';
-// Fetch user data
-$sql = "SELECT *  FROM users";
+ include 'config.php';
+$sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 
-$users = [];
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        
-         $sql1 = "SELECT custom_column_value.value, custom_columns.column_name 
-       FROM users  
-        LEFT JOIN  custom_column_value ON custom_column_value.user_id = users.id 
-       LEFT JOIN custom_columns ON custom_columns.id = custom_column_value.custom_column_id 
-      
-       WHERE custom_column_value.user_id = '" . $row['id'] . "'";
-$result1 = $conn->query($sql1);
-
-if ($result->num_rows > 0) {
-    while($row1 = $result1->fetch_assoc()) {
-        
-        $row[$row1['column_name']] = $row1['value'];
+$users = array();
+while($row = $result->fetch_assoc()) {
+    $user_id = $row['id'];
+    $custom_sql = "SELECT cc.column_class, ccv.value FROM custom_column_values ccv
+                   JOIN custom_columns cc ON ccv.column_id = cc.id
+                   WHERE ccv.user_id = $user_id";
+    $custom_result = $conn->query($custom_sql);
+    while($custom_row = $custom_result->fetch_assoc()) {
+        $row[$custom_row['column_class']] = $custom_row['value'];
     }
-}
-$users[] = $row;
-    }
+    $users[] = $row;
 }
 
 echo json_encode($users);
 
 $conn->close();
-?>
